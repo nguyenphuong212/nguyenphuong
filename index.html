@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <form id="test-form" method="GET" action="https://script.google.com/macros/s/AKfycbxoSucN5Nu4OUd8LaB4jvdwcjhDiI4Ow3ThdioWGQJoHaKeCvfwl0Du/exec">
+        <input type="text" name="username" placeholder="Nhập tài khoản" />
+        <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        <button type="submit" id="submit-form">Gửi</button>
+    </form>
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var submit = $("button[type='submit']");
+            submit.click(function() {
+                var data = $('form#test-form').serialize();
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://script.google.com/macros/s/AKfycbxoSucN5Nu4OUd8LaB4jvdwcjhDiI4Ow3ThdioWGQJoHaKeCvfwl0Du/exec',
+                    dataType: 'json',
+                    crossDomain: true,
+                    data: data,
+                    success: function(data) {
+                        if (data == 'false') {
+                            alert('Thêm không thành công, bạn cũng có thể sử dụng để hiển thị Popup hoặc điều hướng');
+                        } else {
+                            alert('Đã thêm dữ liệu vào Form');
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
